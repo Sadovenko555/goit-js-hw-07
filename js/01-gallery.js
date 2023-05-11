@@ -31,14 +31,16 @@ function handleGalleryItemClick(event) {
     <img src="${largeImageSrc}" alt="" loading="lazy">
   `);
 
-  currentLightbox.show();
-  document.addEventListener('keydown', handleDocumentKeyDown);
+  currentLightbox.show(() => {
+    document.addEventListener('keydown', handleDocumentKeyDown);
+  });
 }
 
 function handleDocumentKeyDown(event) {
   if (event.code === 'Escape') {
-    currentLightbox.close();
-    document.removeEventListener('keydown', handleDocumentKeyDown);
+    currentLightbox.close(() => {
+      document.removeEventListener('keydown', handleDocumentKeyDown);
+    });
   }
 }
 
